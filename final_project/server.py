@@ -1,9 +1,19 @@
 from machinetranslation import translator
 from flask import Flask, render_template, request
+from ibm_watson import LanguageTranslatorV3
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+import os
+from dotenv import load_dotenv
 import json
 
 app = Flask("Web Translator")
-
+apikey = os.environ['apikey']
+url = os.environ['url']
+authenticator = IAMAuthenticator(apikey)
+language_translator = LanguageTranslatorV3(
+    version='2023-02-23',
+    authenticator=authenticator
+    )
 @app.route("/englishToFrench")
 
 def english_to_French(text1):
@@ -30,5 +40,5 @@ def renderIndexPage():
 
     if __name__ == "__main__":
         app.run(host="0.0.0.0", port=8080)
-
-##printing 
+    renderIndexPage()
+##printing  
