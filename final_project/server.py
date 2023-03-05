@@ -32,7 +32,7 @@ def french_to_english(text1):
             text=text1,
             model_id='fr-en').get_result()
     return englishtranslation.get("translation").get("translation")
-
+#############################
 
 @app.route("/")
 def renderIndexPage():
